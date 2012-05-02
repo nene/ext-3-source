@@ -15,11 +15,12 @@
     "--categories": "categories.json",
     "--local-storage-db": "ext-3",
     "--ignore-global": true,
+    "--warnings": ["-link", "-link_ambiguous", "-no_doc", "-type_name", "-hide"],
 
-    "--footer": "Ext JS 3.4 Docs - Generated with <a href='https://github.com/senchalabs/jsduck'>JSDuck</a> VERSION. <a href='http://www.sencha.com/legal/terms-of-use/'>Terms of Use</a>",
+    "--footer": "Ext JS 3.4 Docs - Generated with <a href='https://github.com/senchalabs/jsduck'>JSDuck</a> {VERSION}. <a href='http://www.sencha.com/legal/terms-of-use/'>Terms of Use</a>",
 
     "--head-html": [
-        "<link rel='canonical' href='http://docs.sencha.com/touch-charts/1-0/' />",
-        "<meta name='description' content='Sencha Touch Charts 1.0 API Documentation. Documentation on how to create Charts with Sencha Touch' />"
+        "<link rel='canonical' href='http://docs.sencha.com/ext-js/3-4/' />",
+        "<meta name='description' content='Ext JS 3.4 API Documentation.' />"
     ]
 }
