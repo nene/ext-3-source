@@ -1,0 +1,267 @@
+[
+    {
+        "name": "Base",
+        "groups": [
+            {
+                "name": "Base",
+                "classes": [
+                    "Ext",
+                    "Ext.Loader",
+                    "Ext.Error"
+                ]
+            },
+            {
+                "name": "Animation & Effects",
+                "classes": [
+                    "Ext.Fx"
+                ]
+            },
+            {
+                "name": "DOM",
+                "classes": [
+                    "Ext.DomHelper",
+                    "Ext.DomQuery",
+                    "Ext.Element",
+                    "Ext.CompositeElement",
+                    "Ext.CompositeElementLite"
+                ]
+            },
+            {
+                "name": "Ajax",
+                "classes": [
+                    "Ext.Ajax",
+                    "Ext.util.JSON",
+                    "Ext.Updater",
+                    "Ext.Updater.defaults",
+                    "Ext.Updater.BasicRenderer"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "View",
+        "groups": [
+            {
+                "name": "Containers & Panels",
+                "classes": [
+                    "Ext.Container",
+                    "Ext.ButtonGroup",
+                    "Ext.Panel",
+                    "Ext.DataView",
+                    "Ext.Layer",
+                    "Ext.Shadow",
+                    "Ext.Viewport"
+                ]
+            },
+            {
+                "name": "Layouts",
+                "classes": [
+                    "Ext.layout.*"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Components",
+        "groups": [
+            {
+                "name": "Components",
+                "classes": [
+                    "Ext.Component",
+                    "Ext.Button",
+                    "Ext.ColorPalette",
+                    "Ext.CycleButton",
+                    "Ext.LoadMask",
+                    "Ext.MessageBox",
+                    "Ext.Msg",
+                    "Ext.FlashComponent",
+                    "Ext.Editor",
+                    "Ext.DatePicker",
+                    "Ext.ProgressBar",
+                    "Ext.QuickTip",
+                    "Ext.QuickTips",
+                    "Ext.Tab*",
+                    "Ext.Toolbar",
+                    "Ext.Spacer",
+                    "Ext.Tip",
+                    "Ext.ToolTip",
+                    "Ext.slider.Thumb",
+                    "Ext.slider.MultiSlider",
+                    "Ext.slider.SingleSlider",
+                    "Ext.slider.Tip",
+                    "Ext.SplitBar",
+                    "Ext.SplitBar.BasicLayoutAdapter",
+                    "Ext.SplitBar.AbsoluteLayoutAdapter",
+                    "Ext.SplitButton",
+                    "Ext.Window",
+                    "Ext.WindowGroup",
+                    "Ext.WindowMgr"
+                ]
+            },
+            {
+                "name": "Form",
+                "classes": [
+                    "Ext.form.*"
+                ]
+            },
+            {
+                "name": "List",
+                "classes": [
+                    "Ext.list.*"
+                ]
+            },
+            {
+                "name": "Grid",
+                "classes": [
+                    "Ext.grid.*"
+                ]
+            },
+            {
+                "name": "Menu",
+                "classes": [
+                    "Ext.menu.*"
+                ]
+            },
+            {
+                "name": "Tree",
+                "classes": [
+                    "Ext.tree.*"
+                ]
+            },
+            {
+                "name": "Charts",
+                "classes": [
+                    "Ext.chart.*"
+                ]
+            },
+            {
+                "name": "Drag & Drop",
+                "classes": [
+                    "Ext.dd.*"
+                ]
+            },
+            {
+                "name": "Toolbar",
+                "classes": [
+                    "Ext.PagingToolbar",
+                    "Ext.Toolbar.Item",
+                    "Ext.Toolbar.Separator",
+                    "Ext.Toolbar.Spacer",
+                    "Ext.Toolbar.Fill",
+                    "Ext.Toolbar.TextItem"
+                ]
+            },
+            {
+                "name": "Component Utilities",
+                "classes": [
+                    "Ext.Action",
+                    "Ext.BoxComponent",
+                    "Ext.ComponentMgr",
+                    "Ext.FlashProxy",
+                    "Ext.*SelectionModel",
+                    "Ext.Resizable",
+                    "Ext.Template",
+                    "Ext.XTemplate"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Data",
+        "groups": [
+            {
+                "name": "Data Models",
+                "classes": [
+                    "Ext.data.Record",
+                    "Ext.data.Field",
+                    "Ext.data.Tree",
+                    "Ext.data.Node"
+                ]
+            },
+            {
+                "name": "Data Proxies",
+                "classes": [
+                    "Ext.data.Api",
+                    "Ext.data.Response",
+                    "Ext.data.Api.Error",
+                    "Ext.data.*Proxy",
+                    "Ext.data.DataProxy.Error",
+                    "Ext.data.Connection",
+                    "Ext.data.Request",
+                    "Ext.data.SortTypes",
+                    "Ext.data.Types"
+                ]
+            },
+            {
+                "name": "Data Stores",
+                "classes": [
+                    "Ext.data.*Store",
+                    "Ext.data.Store.Error",
+                    "Ext.StoreMgr"
+                ]
+            },
+            {
+                "name": "Data Readers & Writers",
+                "classes": [
+                    "Ext.data.*Reader",
+                    "Ext.data.DataReader.Error",
+                    "Ext.data.JsonReader.Error",
+                    "Ext.data.*Writer"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Utilities",
+        "groups": [
+            {
+                "name": "Native Extensions",
+                "classes": [
+                    "Array",
+                    "Date",
+                    "Function",
+                    "String",
+                    "Number"
+                ]
+            },
+            {
+                "name": "Utility",
+                "classes": [
+                    "Ext.AbstractManager",
+                    "Ext.KeyMap",
+                    "Ext.KeyNav",
+                    "Ext.History",
+                    "Ext.state.CookieProvider",
+                    "Ext.state.Provider",
+                    "Ext.state.Manager",
+                    "Ext.util.ClickRepeater",
+                    "Ext.util.Format",
+                    "Ext.util.Functions",
+                    "Ext.util.MixedCollection",
+                    "Ext.util.TextMetrics",
+                    "Ext.util.Cookies",
+                    "Ext.util.CSS"
+                ]
+            },
+            {
+                "name": "Direct",
+                "classes": [
+                    "Ext.Direct",
+                    "Ext.Direct.Transaction",
+                    "Ext.direct.*"
+                ]
+            },
+            {
+                "name": "Events",
+                "classes": [
+                    "Ext.TaskMgr",
+                    "Ext.EventManager",
+                    "Ext.EventObject",
+                    "Ext.util.DelayedTask",
+                    "Ext.util.Observable",
+                    "Ext.util.TaskRunner"
+                ]
+            }
+        ]
+    }
+]

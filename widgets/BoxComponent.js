@@ -35,7 +35,7 @@ Ext.BoxComponent = Ext.extend(Ext.Component, {
      * by a Container which has been configured to use a <b>{@link Ext.layout.BoxLayout BoxLayout}.</b>
      * Each child Component with a <code>flex</code> property will be flexed either vertically (by a VBoxLayout)
      * or horizontally (by an HBoxLayout) according to the item's <b>relative</b> <code>flex</code> value
-     * compared to the sum of all Components with <code>flex</flex> value specified. Any child items that have
+     * compared to the sum of all Components with <code>flex</code> value specified. Any child items that have
      * either a <code>flex = 0</code> or <code>flex = undefined</code> will not be 'flexed' (the initial size will not be changed).
      */
     // Configs below are used for all Components when rendered by AnchorLayout.
