@@ -150,7 +150,7 @@ paramOrder: 'param1|param2|param'
      * @param {Object} trans The request transaction object
      * @param {Object} result Data object picked out of the server-response.
      * @param {Object} res The server response
-     * @param {Ext.data.Record/[Ext.data.Record]} rs The Store resultset associated with the action.
+     * @param {Ext.data.Record/Ext.data.Record[]} rs The Store resultset associated with the action.
      * @protected
      */
     onWrite : function(action, trans, result, res, rs) {

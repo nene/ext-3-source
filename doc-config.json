@@ -14,8 +14,7 @@
 
     "--categories": "categories.json",
     "--local-storage-db": "ext-3",
-    "--ignore-global": true,
-    "--warnings": ["-link", "-link_ambiguous", "-no_doc", "-type_name", "-hide"],
+    "--warnings": ["-link", "-link_ambiguous", "-no_doc", "-type_name", "-hide", "-dup_member"],
 
     "--footer": "Ext JS 3.4 Docs - Generated with <a href='https://github.com/senchalabs/jsduck'>JSDuck</a> {VERSION}. <a href='http://www.sencha.com/legal/terms-of-use/'>Terms of Use</a>",
 

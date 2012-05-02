@@ -76,9 +76,6 @@ Ext.Viewport = Ext.extend(Ext.Container, {
      * @cfg {Mixed} renderTo @hide
      */
     /**
-     * @cfg {Boolean} hideParent @hide
-     */
-    /**
      * @cfg {Number} height @hide
      */
     /**

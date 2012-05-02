@@ -72,7 +72,7 @@ restActions : {
          * convention if desired.  However, the framework internally calls methods based upon the KEY so a way of retreiving the the words "create", "read", "update" and "destroy" is
          * required.  This method will cache discovered KEYS into the private validActions hash.
          * @param {String} name The runtime name of the action.
-         * @return {String||null} returns the action-key, or verb of the user-action or null if invalid.
+         * @return {String/null} returns the action-key, or verb of the user-action or null if invalid.
          * @nodoc
          */
         getVerb : function(name) {

@@ -688,23 +688,23 @@ el.un('click', this.handlerFn);
             isBrokenOnTable = false,
             hasGetAttribute = 'getAttribute' in test,
             unknownRe = /undefined|unknown/;
-            
+
         if (hasGetAttribute) {
-            
+
             try {
                 test.getAttribute('ext:qtip');
             } catch (e) {
                 isBrokenOnTable = true;
             }
-            
+
             return function(name, ns) {
                 var el = this.dom,
                     value;
-                
+
                 if (el.getAttributeNS) {
                     value  = el.getAttributeNS(ns, name) || null;
                 }
-            
+
                 if (value == null) {
                     if (ns) {
                         if (isBrokenOnTable && el.tagName.toUpperCase() == 'TABLE') {
@@ -727,7 +727,7 @@ el.un('click', this.handlerFn);
                 var el = this.om,
                     value,
                     attribute;
-                
+
                 if (ns) {
                     attribute = el[ns + ':' + name];
                     value = unknownRe.test(typeof attribute) ? undefined : attribute;
@@ -739,7 +739,7 @@ el.un('click', this.handlerFn);
         }
         test = null;
     })(),
-        
+
     /**
     * Update the innerHTML of this element
     * @param {String} html The new HTML
@@ -790,10 +790,6 @@ ep.autoBoxAdjust = true;
 // private
 var unitPattern = /\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i,
     docEl;
-
-/**
- * @private
- */
 
 /**
  * Retrieves Ext.Element objects.

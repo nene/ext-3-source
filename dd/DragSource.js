@@ -213,7 +213,7 @@ Ext.extend(Ext.dd.DragSource, Ext.dd.DDProxy, {
              * @param {Object} target The target DD 
              * @param {Event} e The event object
              * @param {String} id The id of the dropped element
-             * @method afterInvalidDrop
+             * @method afterValidDrop
              */
             this.afterValidDrop(target, e, id);
         }

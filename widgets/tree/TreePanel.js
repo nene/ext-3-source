@@ -903,14 +903,6 @@ new Ext.tree.TreePanel({
      * @event beforeadd
      * @hide
      */
-    /**
-     * @event beforeremove
-     * @hide
-     */
-    /**
-     * @event remove
-     * @hide
-     */
 
 
 

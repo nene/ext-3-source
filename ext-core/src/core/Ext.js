@@ -315,7 +315,7 @@ Company.data.CustomStore = function(config) { ... }
                 ns,
                 sub,
                 current;
-                
+
             for(; i < len1; ++i) {
                 main = arguments[i];
                 ns = arguments[i].split('.');
@@ -563,32 +563,31 @@ function(el){
         getBody : function(){
             return Ext.get(DOC.body || DOC.documentElement);
         },
-        
+
         /**
          * Returns the current document body as an {@link Ext.Element}.
          * @return Ext.Element The document body
+         * @method
          */
         getHead : function() {
             var head;
-            
+
             return function() {
                 if (head == undefined) {
                     head = Ext.get(DOC.getElementsByTagName("head")[0]);
                 }
-                
+
                 return head;
             };
         }(),
 
-        /**
-         * Removes a DOM node from the document.
-         */
         /**
          * <p>Removes this element from the document, removes all DOM event listeners, and deletes the cache reference.
          * All DOM event listeners are removed from this element. If {@link Ext#enableNestedListenerRemoval} is
          * <code>true</code>, then DOM event listeners are also removed from all child nodes. The body node
          * will be ignored if passed in.</p>
          * @param {HTMLElement} node The node to remove
+         * @method
          */
         removeNode : isIE && !isIE8 ? function(){
             var d;

@@ -20,18 +20,18 @@ els.setWidth(100).hide(true);
 </code></pre>
  */
 Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
-    
+
     constructor : function(els, root){
         this.elements = [];
         this.add(els, root);
     },
-    
+
     // private
     getElement : function(el){
         // In this case just return it, since we already have a reference to it
         return el;
     },
-    
+
     // private
     transformElement : function(el){
         return Ext.get(el);
@@ -41,12 +41,14 @@ Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
     * Adds elements to this composite.
     * @param {String/Array} els A string CSS selector, an array of elements or an element
     * @return {CompositeElement} this
+    * @ignore
     */
 
     /**
      * Returns the Element object at the specified index
      * @param {Number} index
      * @return {Ext.Element}
+     * @ignore
      */
 
     /**
@@ -65,6 +67,7 @@ Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
      * Defaults to the <code>element</code> at the current <code>index</code>
      * within the composite.
      * @return {CompositeElement} this
+     * @ignore
      */
 });
 
@@ -78,6 +81,7 @@ Ext.CompositeElement = Ext.extend(Ext.CompositeElementLite, {
  * @return {CompositeElementLite/CompositeElement}
  * @member Ext.Element
  * @method select
+ * @static
  */
 Ext.Element.select = function(selector, unique, root){
     var els;

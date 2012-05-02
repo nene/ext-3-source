@@ -62,7 +62,7 @@ Ext.Resizable = Ext.extend(Ext.util.Observable, {
          * The proxy Element that is resized in place of the real Element during the resize operation.
          * This may be queried using {@link Ext.Element#getBox} to provide the new area to resize to.
          * Read only.
-         * @type Ext.Element.
+         * @type Ext.Element
          * @property proxy
          */
         this.proxy = this.el.createProxy({tag: 'div', cls: 'x-resizable-proxy', id: this.el.id + '-rzproxy'}, Ext.getBody());

@@ -193,7 +193,7 @@ Ext.data.DataWriter.prototype = {
      * {@link Ext.data.Record#phantom Phantom} records will have had their idProperty omitted in {@link #toHash} if determined to be auto-generated.
      * Non AUTOINCREMENT pks should have been protected.
      * @param {Hash} data Hashed by Ext.data.DataWriter#toHash
-     * @return {[Object]} Array of attribute-objects.
+     * @return {Object[]} Array of attribute-objects.
      * @protected
      */
     toArray : function(data) {

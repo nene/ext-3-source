@@ -57,7 +57,7 @@ Ext.data.Types = new function(){
         stripRe: /[\$,%]/g,
         
         /**
-         * @type Object.
+         * @type Object
          * @property AUTO
          * This data type means that no conversion is applied to the raw data before it is placed into a Record.
          */
@@ -68,7 +68,7 @@ Ext.data.Types = new function(){
         },
 
         /**
-         * @type Object.
+         * @type Object
          * @property STRING
          * This data type means that the raw data is converted into a String before it is placed into a Record.
          */
@@ -79,7 +79,7 @@ Ext.data.Types = new function(){
         },
 
         /**
-         * @type Object.
+         * @type Object
          * @property INT
          * This data type means that the raw data is converted into an integer before it is placed into a Record.
          * <p>The synonym <code>INTEGER</code> is equivalent.</p>
@@ -94,7 +94,7 @@ Ext.data.Types = new function(){
         },
         
         /**
-         * @type Object.
+         * @type Object
          * @property FLOAT
          * This data type means that the raw data is converted into a number before it is placed into a Record.
          * <p>The synonym <code>NUMBER</code> is equivalent.</p>
@@ -109,7 +109,7 @@ Ext.data.Types = new function(){
         },
         
         /**
-         * @type Object.
+         * @type Object
          * @property BOOL
          * <p>This data type means that the raw data is converted into a boolean before it is placed into
          * a Record. The string "true" and the number 1 are converted to boolean <code>true</code>.</p>
@@ -122,7 +122,7 @@ Ext.data.Types = new function(){
         },
         
         /**
-         * @type Object.
+         * @type Object
          * @property DATE
          * This data type means that the raw data is converted into a Date before it is placed into a Record.
          * The date format is specified in the constructor of the {@link Ext.data.Field} to which this type is
@@ -156,7 +156,7 @@ Ext.data.Types = new function(){
     
     Ext.apply(this, {
         /**
-         * @type Object.
+         * @type Object
          * @property BOOLEAN
          * <p>This data type means that the raw data is converted into a boolean before it is placed into
          * a Record. The string "true" and the number 1 are converted to boolean <code>true</code>.</p>
@@ -164,14 +164,14 @@ Ext.data.Types = new function(){
          */
         BOOLEAN: this.BOOL,
         /**
-         * @type Object.
+         * @type Object
          * @property INTEGER
          * This data type means that the raw data is converted into an integer before it is placed into a Record.
          * <p>The synonym <code>INT</code> is equivalent.</p>
          */
         INTEGER: this.INT,
         /**
-         * @type Object.
+         * @type Object
          * @property NUMBER
          * This data type means that the raw data is converted into a number before it is placed into a Record.
          * <p>The synonym <code>FLOAT</code> is equivalent.</p>

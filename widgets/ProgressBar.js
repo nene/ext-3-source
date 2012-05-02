@@ -40,8 +40,8 @@ Ext.ProgressBar = Ext.extend(Ext.BoxComponent, {
              * @event update
              * Fires after each update interval
              * @param {Ext.ProgressBar} this
-             * @param {Number} The current progress value
-             * @param {String} The current progress text
+             * @param {Number} value  The current progress value
+             * @param {String} text The current progress text
              */
             "update"
         );

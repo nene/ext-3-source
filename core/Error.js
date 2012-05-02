@@ -3,6 +3,7 @@
  * custom exception-handling.  Framework errors will often extend from the base
  * Ext.Error class.
  * @param {Object/Error} e The thrown exception object.
+ * @member Ext
  */
 Ext.handleError = function(e) {
     throw e;
