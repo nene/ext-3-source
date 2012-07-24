@@ -12,7 +12,7 @@
         "widgets"
     ],
 
-    "--title": "Sencha Docs - Ext JS 3.4",
+    "--title": "Ext JS 3.4 - Sencha Docs",
 
     "--categories": "categories.json",
     "--local-storage-db": "ext-3",
