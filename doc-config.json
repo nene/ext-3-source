@@ -4,7 +4,9 @@
         "data",
         "dd",
         "direct",
-        "ext-core/src",
+        "ext-core/src/core",
+        "ext-core/src/data",
+        "ext-core/src/util",
         "state",
         "util",
         "widgets"
