@@ -18,10 +18,10 @@
     "--local-storage-db": "ext-3",
     "--warnings": ["-link", "-link_ambiguous", "-no_doc", "-type_name", "-hide", "-dup_member"],
 
-    "--footer": "Ext JS 3.4 Docs - Generated with <a href='https://github.com/senchalabs/jsduck'>JSDuck</a> {VERSION}. <a href='http://www.sencha.com/legal/terms-of-use/'>Terms of Use</a>",
+    "--footer": "Ext JS 3.4.1 Docs - Generated with <a href='https://github.com/senchalabs/jsduck'>JSDuck</a> {VERSION}. <a href='http://www.sencha.com/legal/terms-of-use/'>Terms of Use</a>",
 
     "--head-html": [
         "<link rel='canonical' href='http://docs.sencha.com/ext-js/3-4/' />",
-        "<meta name='description' content='Ext JS 3.4 API Documentation.' />"
+        "<meta name='description' content='Ext JS 3.4.1 API Documentation.' />"
     ]
 }
