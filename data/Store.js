@@ -259,7 +259,7 @@ sortInfo: {
 
     constructor : function(config){
         /**
-         * @property multiSort
+         * @property hasMultiSort
          * @type Boolean
          * True if this store is currently sorted by more than one field/direction combination.
          */

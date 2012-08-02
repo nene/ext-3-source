@@ -46,10 +46,13 @@ Ext.util.Format = function() {
         /**
          * Checks a reference and converts it to the default value if it's empty
          * @param {Mixed} value Reference to check
-         * @param {String} defaultValue The value to insert of it's undefined (defaults to "")
+         * @param {String} defaultValue The value to insert if it's undefined (defaults to "")
          * @return {String}
          */
         defaultValue : function(value, defaultValue) {
+            if (!defaultValue && defaultValue !== 0) {
+                defaultValue = '';
+            }
             return value !== undefined && value !== '' ? value : defaultValue;
         },
 

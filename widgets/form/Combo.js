@@ -791,7 +791,7 @@ myCombo.keyNav.tab = function() {   // Override TAB handling function
                 if(hname == 'down' || this.scope.isExpanded()){
                     // this MUST be called before ComboBox#fireKey()
                     var relay = Ext.KeyNav.prototype.doRelay.apply(this, arguments);
-                    if(!Ext.isIE && Ext.EventManager.useKeydown){
+                    if(((Ext.isIE9 && Ext.isStrict) || !Ext.isIE) && Ext.EventManager.useKeydown){
                         // call Combo#fireKey() for browsers which use keydown event (except IE)
                         this.scope.fireKey(e);
                     }

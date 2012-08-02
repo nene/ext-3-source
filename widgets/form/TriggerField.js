@@ -399,3 +399,4 @@ Ext.form.TwinTriggerField = Ext.extend(Ext.form.TriggerField, {
     onTrigger2Click : Ext.emptyFn
 });
 Ext.reg('trigger', Ext.form.TriggerField);
+Ext.reg('twintrigger', Ext.form.TwinTriggerField);

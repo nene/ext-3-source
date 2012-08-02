@@ -26,7 +26,7 @@ Ext.SplitBar = function(dragElement, resizingElement, orientation, placement, ex
 
     /** @private */
     this.el = Ext.get(dragElement, true);
-    this.el.dom.unselectable = "on";
+    this.el.unselectable();
     /** @private */
     this.resizingEl = Ext.get(resizingElement, true);
 

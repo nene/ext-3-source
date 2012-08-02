@@ -87,6 +87,7 @@ textarea         {@link Ext.form.TextArea}
 textfield        {@link Ext.form.TextField}
 timefield        {@link Ext.form.TimeField}
 trigger          {@link Ext.form.TriggerField}
+twintrigger      {@link Ext.form.TwinTriggerField}
 
 Chart components
 ---------------------------------------

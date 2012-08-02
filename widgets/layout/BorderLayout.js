@@ -229,8 +229,9 @@ Ext.layout.BorderLayout = Ext.extend(Ext.layout.ContainerLayout, {
 /**
  * @class Ext.layout.BorderLayout.Region
  * <p>This is a region of a {@link Ext.layout.BorderLayout BorderLayout} that acts as a subcontainer
- * within the layout.  Each region has its own {@link Ext.layout.ContainerLayout layout} that is
- * independent of other regions and the containing BorderLayout, and can be any of the
+ * within the layout. Each region in the layout is a component, the region itself is constructed on top
+ * of that component, acting like a mixin. Each region has its own {@link Ext.layout.ContainerLayout layout} 
+ * that is independent of other regions and the containing BorderLayout, and can be any of the
  * {@link Ext.layout.ContainerLayout valid Ext layout types}.</p>
  * <p>Region size is managed automatically and cannot be changed by the user -- for
  * {@link #split resizable regions}, see {@link Ext.layout.BorderLayout.SplitRegion}.</p>

@@ -124,13 +124,9 @@ Ext.extend(Ext.data.HttpProxy, Ext.data.DataProxy, {
 
             Ext.applyIf(o, this.conn);
 
-            // If a currently running request is found for this action, abort it.
-            if (this.activeRequest[action]) {
-                ////
-                // Disabled aborting activeRequest while implementing REST.  activeRequest[action] will have to become an array
-                // TODO ideas anyone?
-                //
-                //Ext.Ajax.abort(this.activeRequest[action]);
+            // If a currently running read request is found, abort it
+            if (action == Ext.data.Api.actions.read && this.activeRequest[action]) {
+                Ext.Ajax.abort(this.activeRequest[action]);
             }
             this.activeRequest[action] = Ext.Ajax.request(o);
         }else{

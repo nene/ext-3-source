@@ -277,6 +277,10 @@ grid.on('validateedit', function(e) {
                     col: col
                 };
                 this.activeEditor = ed;
+                if (ed.field.isXType('checkbox')) {
+                    ed.allowBlur = false;
+                    this.setupCheckbox(ed.field);    
+                }
                 // Set the selectSameEditor flag if we are reusing the same editor again and
                 // need to prevent the editor from firing onBlur on itself.
                 ed.selectSameEditor = (this.activeEditor == this.lastActiveEditor);
@@ -289,6 +293,24 @@ grid.on('validateedit', function(e) {
                 }).defer(50);
             }
         }
+    },
+    
+    setupCheckbox: function(field){
+        var me = this,
+            fn = function() {
+                field.el.on('click', me.onCheckClick, me, {single: true});
+            };
+        if (field.rendered) {
+            fn();
+        } else {
+            field.on('render', fn, null, {single: true});
+        }
+    },
+    
+    onCheckClick: function(){
+        var ed = this.activeEditor;
+        ed.allowBlur = true;
+        ed.field.focus(false, 10);   
     },
 
     // private

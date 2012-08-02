@@ -130,8 +130,8 @@ Ext.form.CompositeField = Ext.extend(Ext.form.Field, {
             defaultMargins: '0 3 0 0',
             ownerCt: this
         });
-        this.innerCt.ownerCt = undefined;
-        
+        delete this.innerCt.ownerCt;
+
         var fields = this.innerCt.findBy(function(c) {
             return c.isFormField;
         }, this);
@@ -159,6 +159,7 @@ Ext.form.CompositeField = Ext.extend(Ext.form.Field, {
              */
             var innerCt = this.innerCt;
             innerCt.render(ct);
+            this.innerCt.ownerCt = this;
 
             this.el = innerCt.getEl();
 

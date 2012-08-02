@@ -855,7 +855,16 @@ Ext.dd.DragDrop.prototype = {
 
                 this.DDM.handleMouseDown(e, this);
 
-                this.DDM.stopEvent(e);
+                if (this.preventDefault || this.stopPropagation) {
+                    if (this.preventDefault) {
+                        e.preventDefault();
+                    }
+                    if (this.stopPropagation) {
+                        e.stopPropagation();
+                    }
+                } else {
+                    this.DDM.stopEvent(e);
+                }
             } else {
 
 
@@ -1316,6 +1325,19 @@ Ext.dd.DragDropMgr = function() {
          * @type int
          */
         mode: 0,
+        
+        /**
+         * @property {Boolean} [notifyOccluded=false]
+         * This config is only provided to provide old, usually unwanted drag/drop behaviour.
+         *
+         * From ExtJS 4.1.0 onwards, when drop targets are contained in floating, absolutely positioned elements
+         * such as in {@link Ext.window.Window Windows}, which may overlap each other, `over` and `drop` events
+         * are only delivered to the topmost drop target at the mouse position.
+         *
+         * If all targets below that in zIndex order should also receive notifications, set
+         * `notifyOccluded` to `true`.
+         */
+        notifyOccluded: false,
 
         /**
          * Runs method on all drag and drop objects
@@ -1787,130 +1809,196 @@ Ext.dd.DragDropMgr = function() {
          * @private
          */
         fireEvents: function(e, isDrop) {
-            var dc = this.dragCurrent;
+            var me = this,
+                dragCurrent = me.dragCurrent,
+                mousePoint = e.getPoint(),
+                overTarget,
+                overTargetEl,
+                allTargets = [],
+                oldOvers  = [],  // cache the previous dragOver array
+                outEvts   = [],
+                overEvts  = [],
+                dropEvts  = [],
+                enterEvts = [],
+                needsSort,
+                i,
+                len,
+                sGroup;
 
             // If the user did the mouse up outside of the window, we could
             // get here even though we have ended the drag.
-            if (!dc || dc.isLocked()) {
+            if (!dragCurrent || dragCurrent.isLocked()) {
                 return;
             }
 
-            var pt = e.getPoint();
-
-            // cache the previous dragOver array
-            var oldOvers = [];
-
-            var outEvts   = [];
-            var overEvts  = [];
-            var dropEvts  = [];
-            var enterEvts = [];
-
             // Check to see if the object(s) we were hovering over is no longer
             // being hovered over so we can fire the onDragOut event
-            for (var i in this.dragOvers) {
+            for (i in me.dragOvers) {
+                overTarget = me.dragOvers[i];
 
-                var ddo = this.dragOvers[i];
-
-                if (! this.isTypeOfDD(ddo)) {
+                if (! me.isTypeOfDD(overTarget)) {
                     continue;
                 }
 
-                if (! this.isOverTarget(pt, ddo, this.mode)) {
-                    outEvts.push( ddo );
+                if (! this.isOverTarget(mousePoint, overTarget, me.mode)) {
+                    outEvts.push( overTarget );
                 }
 
                 oldOvers[i] = true;
-                delete this.dragOvers[i];
+                delete me.dragOvers[i];
             }
 
-            for (var sGroup in dc.groups) {
+            // Collect all targets which are members of the same ddGoups that the dragCurrent is a member of, and which may recieve mouseover and drop notifications.
+            // This is preparatory to seeing which one(s) we are currently over
+            // Begin by iterating through the ddGroups of which the dragCurrent is a member
+            for (sGroup in dragCurrent.groups) {
 
                 if ("string" != typeof sGroup) {
                     continue;
                 }
 
-                for (i in this.ids[sGroup]) {
-                    var oDD = this.ids[sGroup][i];
-                    if (! this.isTypeOfDD(oDD)) {
-                        continue;
-                    }
+                // Loop over the registered members of each group, testing each as a potential target
+                for (i in me.ids[sGroup]) {
+                    overTarget = me.ids[sGroup][i];
 
-                    if (oDD.isTarget && !oDD.isLocked() && ((oDD != dc) || (dc.ignoreSelf === false))) {
-                        if (this.isOverTarget(pt, oDD, this.mode)) {
-                            // look for drop interactions
-                            if (isDrop) {
-                                dropEvts.push( oDD );
-                            // look for drag enter and drag over interactions
-                            } else {
+                    // The target is valid if it is a DD type
+                    // And it's got a DOM element
+                    // And it's configured to be a drop target
+                    // And it's not locked
+                    // And it's either not the dragCurrent, or, if it is, tha dragCurrent is configured to not ignore itself.
+                    if (me.isTypeOfDD(overTarget) &&
+                        (overTargetEl = overTarget.getEl()) &&
+                        (overTarget.isTarget) &&
+                        (!overTarget.isLocked()) &&
+                        ((overTarget != dragCurrent) || (dragCurrent.ignoreSelf === false))) {
 
-                                // initial drag over: dragEnter fires
-                                if (!oldOvers[oDD.id]) {
-                                    enterEvts.push( oDD );
-                                // subsequent drag overs: dragOver fires
-                                } else {
-                                    overEvts.push( oDD );
-                                }
-
-                                this.dragOvers[oDD.id] = oDD;
-                            }
+                        // Only sort by zIndex if there were some which had a floating zIndex value
+                        if ((overTarget.zIndex = me.getZIndex(overTargetEl)) !== -1) {
+                            needsSort = true;
                         }
+                        allTargets.push(overTarget);
                     }
                 }
             }
 
-            if (this.mode) {
-                if (outEvts.length) {
-                    dc.b4DragOut(e, outEvts);
-                    dc.onDragOut(e, outEvts);
-                }
+            // If there were floating targets, sort the highest zIndex to the top
+            if (needsSort) {
+                allTargets.sort(me.byZIndex);
+            }
 
+            // Loop through possible targets, notifying the one(s) we are over.
+            // Usually we only deliver events to the topmost.
+            for (i = 0, len = allTargets.length; i < len; i++) {
+                overTarget = allTargets[i];
+
+                // If we are over the overTarget, queue it up to recieve an event of whatever type we are handling
+                if (me.isOverTarget(mousePoint, overTarget, me.mode)) {
+                    // look for drop interactions
+                    if (isDrop) {
+                        dropEvts.push( overTarget );
+                    // look for drag enter and drag over interactions
+                    } else {
+                        // initial drag over: dragEnter fires
+                        if (!oldOvers[overTarget.id]) {
+                            enterEvts.push( overTarget );
+                        // subsequent drag overs: dragOver fires
+                        } else {
+                            overEvts.push( overTarget );
+                        }
+                        me.dragOvers[overTarget.id] = overTarget;
+                    }
+
+                    // Unless this DragDropManager has been explicitly configured to deliver events to multiple targets, then we are done.
+                    if (!me.notifyOccluded) {
+                        break;
+                    }
+                }
+            }
+
+            if (me.mode) {
+                if (outEvts.length) {
+                    dragCurrent.b4DragOut(e, outEvts);
+                    dragCurrent.onDragOut(e, outEvts);
+                }
+    
                 if (enterEvts.length) {
-                    dc.onDragEnter(e, enterEvts);
+                    dragCurrent.onDragEnter(e, enterEvts);
                 }
 
                 if (overEvts.length) {
-                    dc.b4DragOver(e, overEvts);
-                    dc.onDragOver(e, overEvts);
+                    dragCurrent.b4DragOver(e, overEvts);
+                    dragCurrent.onDragOver(e, overEvts);
                 }
 
                 if (dropEvts.length) {
-                    dc.b4DragDrop(e, dropEvts);
-                    dc.onDragDrop(e, dropEvts);
+                    dragCurrent.b4DragDrop(e, dropEvts);
+                    dragCurrent.onDragDrop(e, dropEvts);
                 }
 
             } else {
                 // fire dragout events
-                var len = 0;
                 for (i=0, len=outEvts.length; i<len; ++i) {
-                    dc.b4DragOut(e, outEvts[i].id);
-                    dc.onDragOut(e, outEvts[i].id);
+                    dragCurrent.b4DragOut(e, outEvts[i].id);
+                    dragCurrent.onDragOut(e, outEvts[i].id);
                 }
 
                 // fire enter events
                 for (i=0,len=enterEvts.length; i<len; ++i) {
                     // dc.b4DragEnter(e, oDD.id);
-                    dc.onDragEnter(e, enterEvts[i].id);
+                    dragCurrent.onDragEnter(e, enterEvts[i].id);
                 }
 
                 // fire over events
                 for (i=0,len=overEvts.length; i<len; ++i) {
-                    dc.b4DragOver(e, overEvts[i].id);
-                    dc.onDragOver(e, overEvts[i].id);
-                }
+                    dragCurrent.b4DragOver(e, overEvts[i].id);
+                    dragCurrent.onDragOver(e, overEvts[i].id);
+                }   
 
                 // fire drop events
                 for (i=0, len=dropEvts.length; i<len; ++i) {
-                    dc.b4DragDrop(e, dropEvts[i].id);
-                    dc.onDragDrop(e, dropEvts[i].id);
+                    dragCurrent.b4DragDrop(e, dropEvts[i].id);
+                    dragCurrent.onDragDrop(e, dropEvts[i].id);
                 }
 
             }
 
             // notify about a drop that did not find a target
             if (isDrop && !dropEvts.length) {
-                dc.onInvalidDrop(e);
+                dragCurrent.onInvalidDrop(e);
             }
+        },
+        
+        /**
+         * @private
+         * Collects the z-index of the passed element, looking up the parentNode axis to find an absolutely positioned ancestor
+         * which is able to yield a z-index. If found to be not absolutely positionedm returns -1.
+         *
+         * This is used when sorting potential drop targets into z-index order so that only the topmost receives `over` and `drop` events.
+         *
+         * @return {Number} The z-index of the element, or of its topmost absolutely positioned ancestor. Returns -1 if the element is not
+         * absolutely positioned.
+         */
+        getZIndex: function(element) {
+            var body = document.body,
+                z,
+                zIndex = -1;
 
+            element = Ext.getDom(element);
+            while (element !== body) {
+                if (!isNaN(z = Number(Ext.fly(element).getStyle('zIndex')))) {
+                    zIndex = z;
+                }
+                element = element.parentNode;
+            }
+            return zIndex;
+        },
+
+        /**
+        * @private
+        * Utility method to pass to {@link Ext.Array#sort} when sorting potential drop targets by z-index.
+        */
+        byZIndex: function(d1, d2) {
+            return d1.zIndex < d2.zIndex;
         },
 
         /**
@@ -2062,22 +2150,7 @@ Ext.dd.DragDropMgr = function() {
             b = y2 + oDD.padding[2];
             l = x1 - oDD.padding[3];
 
-            region = new Ext.lib.Region( t, r, b, l );
-            /*
-             * The code below is to ensure that large scrolling elements will
-             * only have their visible area recognized as a drop target, otherwise it 
-             * can potentially erronously register as a target when the element scrolls
-             * over the top of something below it.
-             */
-            el = Ext.get(el.parentNode);
-            while (el && region) {
-	            if (el.isScrollable()) {
-	                // check whether our element is visible in the view port:
-	                region = region.intersect(el.getRegion());
-	            }
-	            el = el.parent();
-            }
-            return region;
+            return new Ext.lib.Region( t, r, b, l );
         },
 
         /**
