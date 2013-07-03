@@ -311,7 +311,7 @@ Ext.tree.TreeNode = Ext.extend(Ext.data.Node, {
     /**
      * Sets the href for the node.
      * @param {String} href The href to set
-     * @param {String} (Optional) target The target of the href
+     * @param {String} target (Optional) target The target of the href
      */
     setHref : function(href, target){
         this.attributes.href = href;
